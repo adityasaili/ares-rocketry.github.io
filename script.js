@@ -45,9 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Header opacity control on homepage only
-    const isHomepage = window.location.pathname.endsWith('index.html') ||
-        window.location.pathname.endsWith('/') ||
-        window.location.pathname === '';
+    // Header opacity control on homepage only
+    const isHomepage = document.body.classList.contains('home-page');
 
     if (isHomepage) {
         const header = document.querySelector('.header');

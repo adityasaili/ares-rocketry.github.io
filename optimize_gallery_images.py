@@ -4,7 +4,7 @@ import subprocess
 import re
 
 # Configuration
-GALLERY_HTML_PATHS = ["gallery.html", "projects.html", "about.html", "subteams.html"]
+GALLERY_HTML_PATHS = ["gallery/index.html", "projects/index.html", "about/index.html", "team/index.html", "sponsors/index.html", "apply/index.html", "join/index.html", "news/index.html"]
 ASSETS_DIR = "assets/ARES Photos"
 THUMBS_DIR = "assets/thumbnails"
 THUMB_WIDTH = 800

@@ -823,6 +823,7 @@ p {
     .hero__actions {
         justify-content: center;
         flex-wrap: wrap;
+        padding-bottom: 40px;
     }
 
     .section.projects {
@@ -1111,14 +1112,11 @@ p {
     position: absolute;
     width: 50px;
     height: 25px;
-    /* Height for curve */
     background-color: transparent;
-    /* Curved line logic */
     border-bottom: 3px solid var(--color-primary);
-    top: 15px;
-    /* Positioned so bottom edge aligns approx with title (~40px from top) */
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 2;
-    box-shadow: none;
 }
 
 .history-timeline-entry.future {

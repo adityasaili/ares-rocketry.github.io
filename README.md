@@ -5,16 +5,8 @@ Welcome to the ARES Rocketry website repository! This is the source code for the
 The site is built as a modern, static website using HTML5, CSS3, and Vanilla JavaScript. It is designed to be lightweight, responsive, and easy to maintain without complex build tools or frameworks.
 
 ### Running Locally
-To test changes before pushing, run a local web server in the root directory:
-
-```bash
-python3 -m http.server 8000
-```
-
-Then open `http://localhost:8000` in your browser.
-
-> **Note**: Because the site uses directory-based routing (e.g., `/about/`), opening files directly (double-clicking `index.html`) may break links. Always use a local server for testing.
-
+The easiest way to do this is to install LiveServer extension in VSCode and press 'Go Live' in the bottom right corner.
+This will render your updates in real time to a locally hosted webpage.
 ---
 
 ## Project Structure

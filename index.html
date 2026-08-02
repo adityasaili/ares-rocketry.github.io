@@ -38,6 +38,9 @@
 
 <body class="home-page">
 
+    <!-- Fixed starfield background, sits behind all content -->
+    <div id="starfield" aria-hidden="true"></div>
+
     <!-- Navigation -->
     <header class="header">
         <div class="header__container">
@@ -64,6 +67,9 @@
         <!-- Hero Section -->
         <section id="hero" class="hero">
             <div class="hero__background"></div>
+            <div class="shooting-star s1"></div>
+            <div class="shooting-star s2"></div>
+            <div class="shooting-star s3"></div>
             <div class="container hero__container">
                 <div class="hero__logo">
                     <img src="assets/ares-logo.png" alt="ARES Logo" class="hero__logo-img">
@@ -87,19 +93,19 @@
         <!-- Stats Strip -->
         <section class="stats-strip">
             <div class="container stats-strip__grid">
-                <div class="stat-card animate-on-scroll">
+                <div class="stat-card">
                     <span class="stat-card__value">2019</span>
                     <span class="stat-card__label">Team Founded</span>
                 </div>
-                <div class="stat-card animate-on-scroll">
+                <div class="stat-card">
                     <span class="stat-card__value">100+</span>
                     <span class="stat-card__label">Active Members</span>
                 </div>
-                <div class="stat-card animate-on-scroll">
+                <div class="stat-card">
                     <span class="stat-card__value">30,001 ft</span>
                     <span class="stat-card__label">Highest Apogee Reached</span>
                 </div>
-                <div class="stat-card animate-on-scroll">
+                <div class="stat-card">
                     <span class="stat-card__value">6</span>
                     <span class="stat-card__label">Rockets Launched</span>
                 </div>
@@ -109,10 +115,10 @@
         <!-- Current Mission Spotlight -->
         <section class="section mission-spotlight">
             <div class="container mission-spotlight__grid">
-                <div class="mission-spotlight__visual animate-on-scroll">
+                <div class="mission-spotlight__visual">
                     <img src="assets/thumbnails/Propulsion/propulsion_1_large.png" alt="Project Odyssey hybrid engine hot fire test">
                 </div>
-                <div class="mission-spotlight__content animate-on-scroll">
+                <div class="mission-spotlight__content">
                     <span class="eyebrow">Current Mission</span>
                     <h2 style="text-align:left;">Project Odyssey</h2>
                     <p>
@@ -135,13 +141,13 @@
                     from CFD and composite manufacturing to embedded flight software.
                 </p>
                 <div class="subteams-teaser__grid">
-                    <a href="team/#aerostructures" class="subteam-chip animate-on-scroll">Aerostructures</a>
-                    <a href="team/#propulsion" class="subteam-chip animate-on-scroll">Propulsion</a>
-                    <a href="team/#avionics" class="subteam-chip animate-on-scroll">Avionics</a>
-                    <a href="team/#recovery" class="subteam-chip animate-on-scroll">Recovery</a>
-                    <a href="team/#payload" class="subteam-chip animate-on-scroll">Payload</a>
-                    <a href="team/#operations" class="subteam-chip animate-on-scroll">Operations &amp; Logistics</a>
-                    <a href="team/#simulations" class="subteam-chip animate-on-scroll">Simulations</a>
+                    <a href="team/#aerostructures" class="subteam-chip">Aerostructures</a>
+                    <a href="team/#propulsion" class="subteam-chip">Propulsion</a>
+                    <a href="team/#avionics" class="subteam-chip">Avionics</a>
+                    <a href="team/#recovery" class="subteam-chip">Recovery</a>
+                    <a href="team/#payload" class="subteam-chip">Payload</a>
+                    <a href="team/#operations" class="subteam-chip">Operations &amp; Logistics</a>
+                    <a href="team/#simulations" class="subteam-chip">Simulations</a>
                 </div>
             </div>
         </section>
@@ -199,6 +205,13 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <!-- Space theme: starfield, smooth scroll, scroll animations -->
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@3/tsparticles.slim.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="home-animations.js"></script>
 </body>
 
 </html>

@@ -1,7 +1,89 @@
 /* =========================================================
-   HOME PAGE REDESIGN â€” additions only, does not modify
-   existing styles.css so every other page is unaffected.
+   HOME PAGE REDESIGN â€” space theme
+   Additions only, scoped to .home-page â€” does not modify
+   styles.css so every other page is unaffected.
    ========================================================= */
+
+/* --- Base: dark space canvas + fixed starfield --- */
+.home-page {
+    background: #05070f;
+}
+
+#starfield {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+#starfield canvas {
+    display: block;
+}
+
+/* Lift real content above the fixed starfield */
+.home-page main {
+    position: relative;
+    z-index: 1;
+}
+
+.home-page .footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Hero: floating logo + shooting stars --- */
+.hero {
+    overflow: hidden;
+}
+
+.hero__logo-img {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+}
+
+.shooting-star {
+    position: absolute;
+    top: var(--y, 20%);
+    left: var(--x, 70%);
+    width: 3px;
+    height: 3px;
+    background: #fff;
+    border-radius: 999px;
+    filter: drop-shadow(0 0 6px #fff);
+    opacity: 0;
+    animation: shoot 8s linear infinite;
+    z-index: 1;
+}
+
+.shooting-star::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 90px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), transparent);
+    transform: translateY(-50%);
+}
+
+.shooting-star.s1 { --x: 12%; --y: 16%; animation-delay: 0.5s; }
+.shooting-star.s2 { --x: 55%; --y: 8%;  animation-delay: 4s; }
+.shooting-star.s3 { --x: 82%; --y: 26%; animation-delay: 7s; }
+
+@keyframes shoot {
+    0%   { transform: translate(0, 0) rotate(-35deg); opacity: 0; }
+    3%   { opacity: 1; }
+    14%  { transform: translate(-260px, 165px) rotate(-35deg); opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero__logo-img, .shooting-star, .mission-status__dot { animation: none !important; }
+}
 
 /* --- Mission status badge (hero) --- */
 .mission-status {
@@ -14,11 +96,12 @@
     letter-spacing: 0.5px;
     text-transform: uppercase;
     background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(70, 200, 240, 0.35);
     color: var(--color-white);
     padding: 8px 16px;
     border-radius: 999px;
     margin-bottom: var(--spacing-md);
+    box-shadow: 0 0 24px rgba(70, 200, 240, 0.12);
 }
 
 .mission-status__dot {
@@ -32,22 +115,18 @@
 }
 
 @keyframes pulse-dot {
-    0% {
-        box-shadow: 0 0 0 0 rgba(70, 200, 240, 0.6);
-    }
-
-    70% {
-        box-shadow: 0 0 0 8px rgba(70, 200, 240, 0);
-    }
-
-    100% {
-        box-shadow: 0 0 0 0 rgba(70, 200, 240, 0);
-    }
+    0%   { box-shadow: 0 0 0 0 rgba(70, 200, 240, 0.6); }
+    70%  { box-shadow: 0 0 0 8px rgba(70, 200, 240, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(70, 200, 240, 0); }
 }
 
-/* --- Stats strip --- */
+/* --- Stats strip: glass panel over starfield --- */
 .stats-strip {
-    background: var(--color-primary);
+    background: linear-gradient(180deg, rgba(0, 10, 40, 0.35), rgba(0, 10, 40, 0.55));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(70, 200, 240, 0.15);
+    border-bottom: 1px solid rgba(70, 200, 240, 0.15);
     padding: var(--spacing-lg) 0;
 }
 
@@ -63,7 +142,7 @@
     flex-direction: column;
     gap: 4px;
     padding: var(--spacing-md) var(--spacing-sm);
-    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .stat-card:last-child {
@@ -76,6 +155,7 @@
     font-weight: 700;
     color: var(--color-secondary);
     line-height: 1;
+    text-shadow: 0 0 18px rgba(70, 200, 240, 0.5);
 }
 
 .stat-card__label {
@@ -83,21 +163,19 @@
     font-size: 0.8rem;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 @media (max-width: 768px) {
-    .stats-strip__grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .stat-card {
-        border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    }
+    .stats-strip__grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-card { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
 }
 
-/* --- Mission spotlight --- */
+/* --- Mission spotlight: transparent section, glass content card --- */
+.mission-spotlight {
+    background: transparent;
+}
+
 .mission-spotlight__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -105,10 +183,45 @@
     align-items: center;
 }
 
+.mission-spotlight__visual {
+    position: relative;
+}
+
+.mission-spotlight__visual::before {
+    content: '';
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(circle, rgba(70, 200, 240, 0.25), transparent 70%);
+    filter: blur(30px);
+    z-index: -1;
+}
+
 .mission-spotlight__visual img {
     width: 100%;
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-card);
+    box-shadow: 0 0 0 1px rgba(70, 200, 240, 0.25), 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.mission-spotlight__content {
+    background: rgba(8, 14, 38, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(70, 200, 240, 0.18);
+    border-radius: var(--radius-md);
+    padding: 28px 32px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.mission-spotlight__content h2 {
+    color: #fff;
+}
+
+.mission-spotlight__content p {
+    color: #c3cee0;
+}
+
+.mission-spotlight__content strong {
+    color: #fff;
 }
 
 .eyebrow {
@@ -123,20 +236,24 @@
 }
 
 @media (max-width: 900px) {
-    .mission-spotlight__grid {
-        grid-template-columns: 1fr;
-    }
-
-    .mission-spotlight__visual {
-        order: -1;
-    }
+    .mission-spotlight__grid { grid-template-columns: 1fr; }
+    .mission-spotlight__visual { order: -1; }
 }
 
-/* --- Sub-teams teaser --- */
+/* --- Sub-teams teaser: transparent section, glass chips --- */
+.section.subteams-teaser {
+    background: transparent;
+}
+
+.subteams-teaser h2 {
+    color: #fff;
+}
+
 .subteams-teaser__intro {
     text-align: center;
     max-width: 640px;
     margin: 0 auto var(--spacing-lg);
+    color: #aab6cc;
 }
 
 .subteams-teaser__grid {
@@ -150,24 +267,26 @@
     display: inline-block;
     padding: 10px 20px;
     border-radius: 999px;
-    background: var(--color-white);
-    border: 1px solid #e2e6ec;
-    color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(70, 200, 240, 0.35);
+    color: #dff4fc;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     font-weight: 600;
     font-size: 0.9rem;
-    box-shadow: var(--shadow-card);
-    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .subteam-chip:hover {
     transform: translateY(-3px);
-    background: var(--color-primary);
-    color: var(--color-white);
+    background: rgba(70, 200, 240, 0.18);
+    box-shadow: 0 0 20px rgba(70, 200, 240, 0.35);
 }
 
 /* --- Join CTA band --- */
 .cta-band {
     background: linear-gradient(120deg, var(--color-primary), #002a7a);
+    border-top: 1px solid rgba(70, 200, 240, 0.25);
     padding: var(--spacing-xl) 0;
 }
 
@@ -180,12 +299,6 @@
 }
 
 @media (max-width: 700px) {
-    .cta-band__inner {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .cta-band__inner h2 {
-        text-align: center !important;
-    }
+    .cta-band__inner { flex-direction: column; text-align: center; }
+    .cta-band__inner h2 { text-align: center !important; }
 }

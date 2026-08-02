@@ -1,0 +1,191 @@
+/* =========================================================
+   HOME PAGE REDESIGN â€” additions only, does not modify
+   existing styles.css so every other page is unaffected.
+   ========================================================= */
+
+/* --- Mission status badge (hero) --- */
+.mission-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--color-white);
+    padding: 8px 16px;
+    border-radius: 999px;
+    margin-bottom: var(--spacing-md);
+}
+
+.mission-status__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-secondary);
+    box-shadow: 0 0 0 0 rgba(70, 200, 240, 0.7);
+    animation: pulse-dot 2s infinite;
+    flex-shrink: 0;
+}
+
+@keyframes pulse-dot {
+    0% {
+        box-shadow: 0 0 0 0 rgba(70, 200, 240, 0.6);
+    }
+
+    70% {
+        box-shadow: 0 0 0 8px rgba(70, 200, 240, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(70, 200, 240, 0);
+    }
+}
+
+/* --- Stats strip --- */
+.stats-strip {
+    background: var(--color-primary);
+    padding: var(--spacing-lg) 0;
+}
+
+.stats-strip__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    text-align: center;
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: var(--spacing-md) var(--spacing-sm);
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.stat-card:last-child {
+    border-right: none;
+}
+
+.stat-card__value {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    line-height: 1;
+}
+
+.stat-card__label {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+@media (max-width: 768px) {
+    .stats-strip__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-card {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+}
+
+/* --- Mission spotlight --- */
+.mission-spotlight__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+}
+
+.mission-spotlight__visual img {
+    width: 100%;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+}
+
+.eyebrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+@media (max-width: 900px) {
+    .mission-spotlight__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mission-spotlight__visual {
+        order: -1;
+    }
+}
+
+/* --- Sub-teams teaser --- */
+.subteams-teaser__intro {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto var(--spacing-lg);
+}
+
+.subteams-teaser__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.subteam-chip {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: var(--color-white);
+    border: 1px solid #e2e6ec;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.subteam-chip:hover {
+    transform: translateY(-3px);
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* --- Join CTA band --- */
+.cta-band {
+    background: linear-gradient(120deg, var(--color-primary), #002a7a);
+    padding: var(--spacing-xl) 0;
+}
+
+.cta-band__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+@media (max-width: 700px) {
+    .cta-band__inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cta-band__inner h2 {
+        text-align: center !important;
+    }
+}

@@ -20,11 +20,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;400;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;400;600;700&family=Source+Sans+Pro:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
         rel="stylesheet">
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Home redesign additions -->
+    <link rel="stylesheet" href="home-redesign.css">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -67,14 +69,94 @@
                     <img src="assets/ares-logo.png" alt="ARES Logo" class="hero__logo-img">
                 </div>
                 <div class="hero__content">
-                    <p class="hero__subtitle hero-animate delay-100">
+                    <div class="mission-status hero-animate delay-100">
+                        <span class="mission-status__dot"></span>
+                        ACTIVE MISSION — Full-Scale Hot Fire Testing, Aug 2026
+                    </div>
+                    <p class="hero__subtitle hero-animate delay-200">
                         Pushing the boundaries of student aerospace engineering at the University of Melbourne.
                     </p>
                     <div class="hero__actions">
-                        <a href="join/" class="btn btn--primary hero-animate delay-200">Join the Mission</a>
+                        <a href="join/" class="btn btn--primary hero-animate delay-300">Join the Mission</a>
                         <a href="about/" class="btn btn--outline hero-animate delay-300">Learn More</a>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Stats Strip -->
+        <section class="stats-strip">
+            <div class="container stats-strip__grid">
+                <div class="stat-card animate-on-scroll">
+                    <span class="stat-card__value">2019</span>
+                    <span class="stat-card__label">Team Founded</span>
+                </div>
+                <div class="stat-card animate-on-scroll">
+                    <span class="stat-card__value">100+</span>
+                    <span class="stat-card__label">Active Members</span>
+                </div>
+                <div class="stat-card animate-on-scroll">
+                    <span class="stat-card__value">30,001 ft</span>
+                    <span class="stat-card__label">Highest Apogee Reached</span>
+                </div>
+                <div class="stat-card animate-on-scroll">
+                    <span class="stat-card__value">6</span>
+                    <span class="stat-card__label">Rockets Launched</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Mission Spotlight -->
+        <section class="section mission-spotlight">
+            <div class="container mission-spotlight__grid">
+                <div class="mission-spotlight__visual animate-on-scroll">
+                    <img src="assets/thumbnails/Propulsion/propulsion_1_large.png" alt="Project Odyssey hybrid engine hot fire test">
+                </div>
+                <div class="mission-spotlight__content animate-on-scroll">
+                    <span class="eyebrow">Current Mission</span>
+                    <h2 style="text-align:left;">Project Odyssey</h2>
+                    <p>
+                        ARES is developing <strong>Genesis</strong>, our first entirely student-built hybrid rocket
+                        engine, alongside new systems including side-hatch parachute deployment, retractable air
+                        brakes and a custom telemetry network. Odyssey is the team's most ambitious undertaking to
+                        date, targeting the 10,000 ft hybrid category at AURC 2026 in White Cliffs, NSW.
+                    </p>
+                    <a href="projects/" class="btn btn--primary">View Mission History</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sub-teams teaser -->
+        <section class="section subteams-teaser">
+            <div class="container">
+                <h2>One Rocket, Seven Disciplines</h2>
+                <p class="subteams-teaser__intro">
+                    Every launch is the product of seven specialist sub-teams working in lockstep —
+                    from CFD and composite manufacturing to embedded flight software.
+                </p>
+                <div class="subteams-teaser__grid">
+                    <a href="team/#aerostructures" class="subteam-chip animate-on-scroll">Aerostructures</a>
+                    <a href="team/#propulsion" class="subteam-chip animate-on-scroll">Propulsion</a>
+                    <a href="team/#avionics" class="subteam-chip animate-on-scroll">Avionics</a>
+                    <a href="team/#recovery" class="subteam-chip animate-on-scroll">Recovery</a>
+                    <a href="team/#payload" class="subteam-chip animate-on-scroll">Payload</a>
+                    <a href="team/#operations" class="subteam-chip animate-on-scroll">Operations &amp; Logistics</a>
+                    <a href="team/#simulations" class="subteam-chip animate-on-scroll">Simulations</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join CTA band -->
+        <section class="cta-band">
+            <div class="container cta-band__inner">
+                <div>
+                    <h2 style="text-align:left; color:var(--color-white);">Ready to build the next rocket?</h2>
+                    <p style="color:rgba(255,255,255,0.85); margin-bottom:0;">
+                        We recruit at the start of every semester. No experience required — just curiosity and
+                        commitment.
+                    </p>
+                </div>
+                <a href="join/" class="btn btn--primary btn--large">Join the Mission</a>
             </div>
         </section>
     </main>

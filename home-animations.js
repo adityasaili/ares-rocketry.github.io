@@ -8,7 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let particlesContainer = null;
     let lenis = null;
-    let lenisRafId = null;
+
+    if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+    }
 
     /* ---------- 1. Starfield background (tsParticles) ---------- */
     if (window.tsParticles) {
@@ -42,46 +45,36 @@ document.addEventListener('DOMContentLoaded', () => {
           .catch(() => { /* fail silently — dark background still looks fine without it */ });
     }
 
-    /* ---------- 2. Lenis smooth scroll ---------- */
-    function startLenisLoop() {
-        if (!lenis || lenisRafId !== null) return;
-        const raf = (time) => {
-            lenis.raf(time);
-            lenisRafId = requestAnimationFrame(raf);
-        };
-        lenisRafId = requestAnimationFrame(raf);
-    }
-
-    function stopLenisLoop() {
-        if (lenisRafId !== null) {
-            cancelAnimationFrame(lenisRafId);
-            lenisRafId = null;
-        }
-    }
-
-    if (window.Lenis) {
+    /* ---------- 2. Lenis smooth scroll, driven by GSAP's own ticker.
+       Running Lenis on its own requestAnimationFrame loop *and* GSAP/
+       ScrollTrigger on gsap.ticker means two independent clocks driving
+       the same page — they drift a frame apart here and there, which is
+       what causes scroll jitter. Feeding Lenis through gsap.ticker instead
+       makes them share one clock. ---------- */
+    if (window.Lenis && window.gsap) {
         lenis = new Lenis({ duration: 1.1, smoothWheel: true });
         lenis.on('scroll', () => {
             if (window.ScrollTrigger) ScrollTrigger.update();
         });
-        startLenisLoop();
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
     }
 
     /* ---------- Pause everything when the tab isn't visible ---------- */
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
             if (particlesContainer) particlesContainer.pause();
-            stopLenisLoop();
+            if (lenis) lenis.stop();
         } else {
             if (particlesContainer) particlesContainer.play();
-            startLenisLoop();
+            if (lenis) lenis.start();
         }
     });
 
     /* ---------- 3. GSAP scroll-triggered reveals ---------- */
     if (window.gsap && window.ScrollTrigger) {
-        gsap.registerPlugin(ScrollTrigger);
-
         gsap.utils.toArray('.stat-card').forEach((el, i) => {
             gsap.fromTo(el,
                 { opacity: 0, y: 30 },

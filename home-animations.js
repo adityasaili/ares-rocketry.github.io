@@ -108,6 +108,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         );
 
+        gsap.fromTo('.leadership h2, .leadership__intro',
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1, y: 0, duration: 0.7, ease: 'power2.out',
+                scrollTrigger: { trigger: '.leadership', start: 'top 80%' }
+            }
+        );
+
+        gsap.utils.toArray('.leadership-card').forEach((el, i) => {
+            gsap.fromTo(el,
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1, y: 0, duration: 0.6, delay: i * 0.1, ease: 'power2.out',
+                    scrollTrigger: { trigger: el, start: 'top 90%' }
+                }
+            );
+        });
+
         gsap.fromTo('.subteams-teaser h2, .subteams-teaser__intro',
             { opacity: 0, y: 20 },
             {

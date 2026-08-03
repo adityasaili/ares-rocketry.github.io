@@ -9,6 +9,13 @@
     background: #05070f;
 }
 
+/* Let Lenis own scroll physics — the site's base CSS turns on native
+   smooth-scroll, which fights Lenis and causes stutter. Disable it here. */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
 #starfield {
     position: fixed;
     inset: 0;
@@ -122,9 +129,7 @@
 
 /* --- Stats strip: glass panel over starfield --- */
 .stats-strip {
-    background: linear-gradient(180deg, rgba(0, 10, 40, 0.35), rgba(0, 10, 40, 0.55));
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: linear-gradient(180deg, rgba(2, 8, 30, 0.75), rgba(2, 8, 30, 0.85));
     border-top: 1px solid rgba(70, 200, 240, 0.15);
     border-bottom: 1px solid rgba(70, 200, 240, 0.15);
     padding: var(--spacing-lg) 0;
@@ -203,9 +208,7 @@
 }
 
 .mission-spotlight__content {
-    background: rgba(8, 14, 38, 0.45);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(6, 11, 32, 0.85);
     border: 1px solid rgba(70, 200, 240, 0.18);
     border-radius: var(--radius-md);
     padding: 28px 32px;
@@ -267,11 +270,9 @@
     display: inline-block;
     padding: 10px 20px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(18, 26, 56, 0.9);
     border: 1px solid rgba(70, 200, 240, 0.35);
     color: #dff4fc;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
     font-weight: 600;
     font-size: 0.9rem;
     transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;

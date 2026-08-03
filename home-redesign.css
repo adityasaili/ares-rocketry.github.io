@@ -227,6 +227,83 @@ html.lenis, html.lenis body { height: auto; }
     color: #fff;
 }
 
+.mission-spotlight__meta {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    padding: 10px 14px;
+    border-left: 2px solid rgba(70, 200, 240, 0.5);
+    background: rgba(70, 200, 240, 0.06);
+    margin-bottom: var(--spacing-md);
+}
+
+/* --- Leadership: meet the crew --- */
+.section.leadership {
+    background: transparent;
+}
+
+.leadership h2 {
+    color: #fff;
+}
+
+.leadership__intro {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto var(--spacing-lg);
+    color: #aab6cc;
+}
+
+.leadership__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.leadership-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    padding: 20px 14px 24px;
+    background: rgba(6, 11, 32, 0.85);
+    border: 1px solid rgba(70, 200, 240, 0.18);
+    border-radius: var(--radius-md);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.leadership-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(70, 200, 240, 0.5);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 24px rgba(70, 200, 240, 0.15);
+}
+
+.leadership-card__photo {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(70, 200, 240, 0.4);
+    margin-bottom: 6px;
+}
+
+.leadership-card__name {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.leadership-card__role {
+    font-size: 0.8rem;
+    color: var(--color-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 700px) {
+    .leadership__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 .eyebrow {
     display: inline-block;
     font-family: var(--font-body);

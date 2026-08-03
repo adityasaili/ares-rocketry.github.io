@@ -203,6 +203,11 @@ html.lenis, html.lenis body { height: auto; }
 
 .mission-spotlight__visual img {
     width: 100%;
+    /* Reserves space before the image loads, so it doesn't push the page
+       around and cause layout shift. Adjust if the real photo's aspect
+       ratio looks noticeably off once it's live. */
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
     border-radius: var(--radius-md);
     box-shadow: 0 0 0 1px rgba(70, 200, 240, 0.25), 0 20px 60px rgba(0, 0, 0, 0.5);
 }

@@ -6,6 +6,10 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    let particlesContainer = null;
+    let lenis = null;
+    let lenisRafId = null;
+
     /* ---------- 1. Starfield background (tsParticles) ---------- */
     if (window.tsParticles) {
         tsParticles.load({
@@ -13,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
             options: {
                 fullScreen: { enable: false },
                 background: { color: { value: 'transparent' } },
-                fpsLimit: 60,
+                fpsLimit: 30,
                 particles: {
-                    number: { value: 130, density: { enable: true, area: 1000 } },
+                    number: { value: 80, density: { enable: true, area: 1000 } },
                     color: { value: ['#ffffff', '#9fd8f5', '#46c8f0'] },
                     opacity: {
                         value: { min: 0.15, max: 0.9 },
@@ -34,22 +38,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 detectRetina: true
             }
-        }).catch(() => { /* fail silently — dark background still looks fine without it */ });
+        }).then((container) => { particlesContainer = container; })
+          .catch(() => { /* fail silently — dark background still looks fine without it */ });
     }
 
     /* ---------- 2. Lenis smooth scroll ---------- */
-    let lenis;
+    function startLenisLoop() {
+        if (!lenis || lenisRafId !== null) return;
+        const raf = (time) => {
+            lenis.raf(time);
+            lenisRafId = requestAnimationFrame(raf);
+        };
+        lenisRafId = requestAnimationFrame(raf);
+    }
+
+    function stopLenisLoop() {
+        if (lenisRafId !== null) {
+            cancelAnimationFrame(lenisRafId);
+            lenisRafId = null;
+        }
+    }
+
     if (window.Lenis) {
         lenis = new Lenis({ duration: 1.1, smoothWheel: true });
         lenis.on('scroll', () => {
             if (window.ScrollTrigger) ScrollTrigger.update();
         });
-        const raf = (time) => {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        };
-        requestAnimationFrame(raf);
+        startLenisLoop();
     }
+
+    /* ---------- Pause everything when the tab isn't visible ---------- */
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            if (particlesContainer) particlesContainer.pause();
+            stopLenisLoop();
+        } else {
+            if (particlesContainer) particlesContainer.play();
+            startLenisLoop();
+        }
+    });
 
     /* ---------- 3. GSAP scroll-triggered reveals ---------- */
     if (window.gsap && window.ScrollTrigger) {
